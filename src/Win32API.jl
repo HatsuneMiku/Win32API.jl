@@ -6,16 +6,16 @@ module Win32API
 export MessageBoxA, MessageBoxW
 
 function MessageBoxA(
-  hwnd::UInt, msg::AbstractString, title::AbstractString, opt::UInt)
+  hwnd::Ptr{Void}, msg::AbstractString, title::AbstractString, opt::Int)
   return ccall((:MessageBoxA, :user32), stdcall,
-    UInt, (Ptr{UInt}, Ptr{Cchar}, Ptr{Cchar}, UInt),
+    UInt, (Ptr{Void}, Ptr{Cchar}, Ptr{Cchar}, UInt),
     hwnd, msg, title, opt)
 end
 
 function MessageBoxW(
-  hwnd::UInt, msg::Array{Cwchar_t}, title::Array{Cwchar_t}, opt::UInt)
+  hwnd::Ptr{Void}, msg::Array{Cwchar_t}, title::Array{Cwchar_t}, opt::Int)
   return ccall((:MessageBoxW, :user32), stdcall,
-    UInt, (Ptr{UInt}, Ptr{Cwchar_t}, Ptr{Cwchar_t}, UInt),
+    UInt, (Ptr{Void}, Ptr{Cwchar_t}, Ptr{Cwchar_t}, UInt),
     hwnd, msg, title, opt)
 end
 
