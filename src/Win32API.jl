@@ -8,7 +8,7 @@ export MessageBoxA, MessageBoxW
 function MessageBoxA(
   hwnd::Ptr{Void}, msg::AbstractString, title::AbstractString, opt::Int)
   return ccall((:MessageBoxA, :user32), stdcall,
-    UInt, (Ptr{Void}, Ptr{Cchar}, Ptr{Cchar}, UInt),
+    UInt, (Ptr{Void}, Ptr{UInt8}, Ptr{UInt8}, UInt),
     hwnd, msg, title, opt)
 end
 
